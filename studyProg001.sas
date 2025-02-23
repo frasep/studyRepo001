@@ -16,5 +16,5 @@
 	run;
 %mend get_current_gitbranch;
 
-/* %get_current_gitbranch(/create-export/create/homes/Sebastien.Poussart@sas.com/myrepos/github, studyRepo001); */
-/* %put Current branch: &current_gitbranch.; */
+%get_current_gitbranch(/create-export/create/homes/Sebastien.Poussart@sas.com/myrepos/github, studyRepo001);
+%put Current branch: &current_gitbranch.;
