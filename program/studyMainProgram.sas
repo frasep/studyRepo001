@@ -6,8 +6,6 @@
 %let reposRootPath = /mnt/viya-share/data/repos;
 %get_current_gitbranch(&reposRootPath, &studyName);
 
-
-
 %createFolderIfNotExist(&bucketsRootPath./&studyName., &current_gitbranch.);
 %createFolderIfNotExist(&bucketsRootPath./&studyName./&current_gitbranch.,data);
 %createFolderIfNotExist(&bucketsRootPath./&studyName./&current_gitbranch.,outputs);
@@ -31,7 +29,7 @@ data numbers;
 ;
 run;
 
-proc printto print="&bucketsRootPath./&studyName./&current_gitbranch./outputs/sas_output.log"
+proc printto print="&bucketsRootPath./&studyName./&current_gitbranch./outputs/sas_output.lst"
 new;
 run;
 proc print data=numbers;
