@@ -10,15 +10,14 @@
 	run;
 %mend get_current_gitbranch;
 
-%get_current_gitbranch(/create-export/create/homes/Sebastien.Poussart@sas.com/myrepos/github, studyRepo001);
+%get_current_gitbranch(/mnt/viya-share/data/repos, study1);
 
-%let folderPath = /create-export/create/homes/Sebastien.Poussart@sas.com/data/studyData;
+%let studyPath = /mnt/viya-share/data/Buckets/Study1;
 
-%macro createFolderIfNotExist(folder);
-	%put Folder used : &folder;
+%macro createFolderIfNotExist(parentDir, folder);
     %if %sysfunc(fileexist(&folder)) = 0 %then %do;
 		data _null_;
-	    	rc = dcreate('folderName', "&folder");
+	    	rc = dcreate("&folder", "&parentDir");
 	    	if rc = 0 then
 	        	put 'ERROR: Directory could not be created.';
 	    	else
@@ -28,8 +27,8 @@
 %mend createFolderIfNotExist;
 
 %put Current branch: &current_gitbranch.;
-%put Current branch: &folderPath;
+%put Branch path: &studyPath;
 
-%createFolderIfNotExist(&folderPath/&current_gitbranch.);
-%createFolderIfNotExist(&folderPath/&current_gitbranch./data);
-%createFolderIfNotExist(&folderPath/&current_gitbranch./outputs);
+%createFolderIfNotExist(&studyPath.,&current_gitbranch.);
+%createFolderIfNotExist(&studyPath./&current_gitbranch.,data);
+%createFolderIfNotExist(&studyPath./&current_gitbranch.,outputs);
