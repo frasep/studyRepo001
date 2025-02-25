@@ -26,9 +26,8 @@
     %end;
 %mend createFolderIfNotExist;
 
-%put Current branch: &current_gitbranch.;
-%put Branch path: &studyPath;
-
 %createFolderIfNotExist(&studyPath.,&current_gitbranch.);
 %createFolderIfNotExist(&studyPath./&current_gitbranch.,data);
 %createFolderIfNotExist(&studyPath./&current_gitbranch.,outputs);
+%createFolderIfNotExist(&studyPath./&current_gitbranch.,logs);
+
